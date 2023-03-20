@@ -8,7 +8,7 @@
 }
 
 .custom-shape-divider-top-1679268335 {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,5 +21,57 @@
 }
 
 .robot-container {
-  top: 25vh;
+  margin-top: 10%;
+}
+
+.box {
+  background: #f9c4d2;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  position: relative;
+  border-radius: 10px;
+  color: black;
+}
+
+.sb1:before {
+  content: "";
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #f9c4d2;
+  border-top: 10px solid #f9c4d2;
+  border-bottom: 10px solid transparent;
+  left: -19px;
+  top: 6px;
+}
+
+.input {
+  background-color: #7e6a6a;
+  border: 1ex solid none;
+  border-top-width: 1.7em;
+
+  color: #383838;
+  word-wrap: break-word;
+  outline: 7px solid #383838;
+  height: 30px;
+  width: 100%;
+  font-size: 17px;
+  text-align: center;
+  transition: all 1s;
+
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.input:hover {
+  border-top-width: 0.2em;
+  background-color: #f1e8e8;
+}
+
+.input:focus {
+  border-top-width: 0.2em;
+  background-color: #f1e8e8;
 }

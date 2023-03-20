@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+
+import axios from "axios";
 
 import "./Home.css";
 
 import robotImage from "../assets/robot.png";
+import ButtonRecipe from "../components/ButtonRecipe";
+import TypeWriter from "../components/TypeWriter";
+import RecipeGenerated from "../components/RecipeGenerated";
 
 const Home = () => {
+  const [recipeInput, setRecipeInput] = useState("");
+  const [newRecipe, setNewRecipe] = useState("");
+
+  const generateRecipe = async () => {
+    const options = {
+      method: "POST",
+      url: "https://api.openai.com/v1/chat/completions",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer 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",
+      },
+      data: {
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            //content: `Show the recipe and how to make a ${recipeInput}`,
+            content: `Me mostre a receita e como fazer ${recipeInput}`,
+          },
+        ],
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setNewRecipe(response.data.choices[0].message.content);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <div className="app-bg container-fluid">
@@ -31,9 +71,39 @@ const Home = () => {
           </svg>
         </div>
 
-        <div className="row text-center justify-content-center robot-container">
-          <div className="col">
+        <div className="row text-center justify-content-center align-items-center robot-container">
+          <div className="col-md-2">
             <img src={robotImage} width="200px" height="200" />
+          </div>
+          <div className="col-4 mt-2">
+            <div className="box sb1">
+              <p>Which recipe would you like to cook?</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="row justify-content-center align-items-center mt-5">
+          <div className="col-6">
+            <input
+              type="text"
+              name="text"
+              class="input"
+              placeholder="Type your recipe"
+              onChange={(e) => {
+                setRecipeInput(e.target.value);
+              }}
+            />
+          </div>
+        </div>
+        <div className="row justify-content-center text-center mt-3">
+          <div className="col-6">
+            <ButtonRecipe generateRecipe={generateRecipe} />
+          </div>
+        </div>
+
+        <div className="row justify-content-center text-center mt-5">
+          <div className="col-6">
+            <RecipeGenerated text={newRecipe} />
           </div>
         </div>
       </div>
