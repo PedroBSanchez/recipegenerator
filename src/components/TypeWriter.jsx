@@ -10,7 +10,7 @@ const TypeWriter = ({ text, generationFlag }) => {
           <p
             style={{
               fontFamily: "Courier New",
-              fontSize: "1.2rem",
+              fontSize: "1.1rem",
               fontWeight: "900",
             }}
           >

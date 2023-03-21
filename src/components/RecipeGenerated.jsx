@@ -7,7 +7,7 @@ const RecipeGenerated = ({ text, generationFlag }) => {
   return (
     <>
       <div className="generation-container p-3">
-        <TypeWriter text={text} />
+        {generationFlag && <TypeWriter text={text} />}
       </div>
     </>
   );
